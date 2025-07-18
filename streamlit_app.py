@@ -1,17 +1,7 @@
 import streamlit as st
-import json # For parsing JSON strings if needed
+import json 
 import google.generativeai as genai
 import os
-# from dotenv import load_dotenv # Add this if you are using a .env file
-
-# Load environment variables from .env file (if it exists)
-# load_dotenv()
-
-# --- DummyRequest and MCQGenerationView (from your backend logic, adjusted for direct use) ---
-# This part simulates your DRF view for direct integration into Streamlit.
-# In a real deployed app, you'd make an HTTP request to your DRF backend.
-
-# genai.configure(api_key=os.environ.getenv("GEMINI_API_KEY"))
 
 gemini_api_key = st.secrets["GEMINI_API_KEY"]
 genai.configure(api_key=gemini_api_key)
@@ -109,7 +99,7 @@ def mcq_generation_view(request):
         print(f"Error in mcq_generation_view: {e}") # Debugging
         return DummyResponse({"error": f"An error occurred: {str(e)}"}, status=500)
 
-# --- Streamlit App ---
+# --- Streamlit App ----------------------------------------------------
 
 st.set_page_config(page_title="Malayalam MCQ Generator", layout="wide")
 
@@ -140,7 +130,6 @@ if st.button("Generate MCQs", on_click=clear_mcqs): # Clear existing MCQs on new
                 # Create DummyRequest object with the text input
                 request = DummyRequest(data={"text_content": text_content})
 
-                # Call the local Python function (simulating your API call)
                 response = mcq_generation_view(request)
 
                 if response.status == 200:
@@ -200,6 +189,7 @@ if st.session_state.mcqs:
 
         if selected_answer_for_current_q_label: # If an answer has been selected
             # Display correct answer and rationale after selection
+            
             is_correct = selected_answer_for_current_q_label == q['correct_answer_label']
             if is_correct:
                 st.success(f"✅ **Correct!** Your answer: {selected_answer_for_current_q_label}")
