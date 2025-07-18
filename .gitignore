@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.pyc
+*.pyd
+*.so
+.Python
+env/
+venv/
+*.egg
+*.egg-info/
+dist/
+build/
+# For Python-dotenv if you use a .env file locally for other vars
+.env
+
+# Streamlit specific
+.streamlit/secrets.toml  
+
+# Data files to ignore
+data.txt               
+
+#python files to ignore
+
+mcq_generator.py
+streamlit_app_sample.py
+
+
+# IDEs and Editors
+.idea/                  # JetBrains IDEs (e.g., PyCharm)
+.vscode/                # VS Code settings (optional, but often useful to ignore)
+
+# Operating System Files
+.DS_Store               # macOS
+Thumbs.db               # Windows
